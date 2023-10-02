@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<!-- Basic -->
+
+<head th:replace="fragments::head">
+
+</head>
+
+<body>
+    <!-- Start Main Top -->
+    <div th:replace="fragments::main-top"></div>
+    <!-- End Main Top -->
+
+    <!-- Start Main Top -->
+    <header th:replace="fragments::main-header"></header>
+    <!-- End Main Top -->
+
+    <!-- Start Top Search -->
+    <div th:replace="fragments::top-search"></div>
+    <!-- End Top Search -->
+
+
+
+    <section id="login-form">
+        <div class="noi-dung">
+            <div class="form">
+                <h2>會員登入</h2>
+
+                <div th:if="${param.error}" class="text-center alert alert-warning">
+                    <p>使用者名稱或密碼無效!!</p>
+                </div>
+
+                <div th:if="${param.logout}" class="text-center alert alert-success">
+                    <p>您已登出!!</p>
+                </div>
+
+                <form th:action="@{/do-login}" method="POST">
+                    <div class="input-form">
+                        <input type="text" placeholder="請輸入使用者信箱" name="username">
+                    </div>
+                    <div class="input-form">
+                        <input type="password" placeholder="請輸入使用者密碼" name="password">
+                    </div>
+                    <div class="input-form">
+                        <input type="submit" value="會員登入">
+                    </div>
+                    <div class="input-form">
+                        <p>如果沒有帳號? <a th:href="@{/register}">會員註冊 </a></p>
+                    </div>
+                </form>
+                <h3>以其他方式登入 目前未開啟</h3>
+                <ul class="icon-dang-nhap">
+                    <li><i class="fab fa-facebook-f"></i></i></li>
+                    <li><i class="fab fa-google"></i></li>
+                    <li><i class="fab fa-weibo"></i></li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+
+        </div>
+        <!-- Start copyright  -->
+        <div class="footer-copyright">
+            <p class="footer-company">Spring Boot、Thyme-leaf、SpringSecurity、Spring Data JPA、Lombok、MySQL、Hibernate 練習</a>
+            </p>
+        </div>
+
+
+    </section>
+
+<!--    &lt;!&ndash; Start All Title Box &ndash;&gt;-->
+<!--    <div th:replace="fragments::instagram-box">-->
+<!--    </div>-->
+<!--    &lt;!&ndash; End All Title Box &ndash;&gt;-->
+<!--    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>-->
+
+    <!-- ALL JS FILES -->
+    <div th:replace="fragments::script"></div>
+</body>
+
+</html>

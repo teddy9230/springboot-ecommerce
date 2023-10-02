@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<!-- Basic -->
+
+<head th:fragment="head">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>美食網站</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+    <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
+</head>
+<body>
+
+<!-- Start Nav Product -->
+<div class="product-item-filter row" th:fragment="nav-product">
+    <div class="col-12 col-sm-8 text-center text-sm-left">
+        <div class="toolbar-sorter-right">
+            <span>排序</span>
+            <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD"
+                    onchange="location = this.value;">
+                <option value="http://localhost:8090/shop/high-price">價格 高 到 低</option>
+                <option value="http://localhost:8090/shop/low-price">價格 低 到 高</option>
+            </select>
+        </div>
+        <p>顯示所有結果</p>
+    </div>
+    <div class="col-12 col-sm-4 text-center text-sm-right">
+        <ul class="nav nav-tabs ml-auto">
+            <li>
+                <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i
+                        class="fa fa-th"></i> </a>
+            </li>
+            <li>
+                <a class="nav-link" href="#list-view" data-toggle="tab"> <i
+                        class="fa fa-list-ul"></i> </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- End Nav Product -->
+
+<!-- Start Main Top -->
+<div th:fragment="main-top" class="main-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="our-link">
+                    <ul>
+                        <li><a href="#"> 訂購電話 : +886 123456789 </a></li>
+                        <li><a href="#"><i class="fas fa-location-arrow"></i> 地址: 地址地址地址地址地址地址</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="login-box">
+                    <select id="" class="selectpicker show-tick form-control" data-placeholder="Sign In" onchange="location = this.value;">
+                        <option th:text="${session.username != null} ? ${session.username} : '目前沒有登入'"></option>
+                        <option th:if="${session.username == null}" th:value="@{/login}">會員登入</option>
+                        <option th:if="${session.username != null}" th:value="@{/logout}">會員登出</option>
+                        <option th:value="@{/register}">會員註冊</option>
+
+                    </select>
+                </div>
+                <div class="text-slid-box">
+                    <div id="offer-box" class="carouselTicker">
+                        <ul class="offer-box">
+                            <li>
+                                <i class="fab fa-opencart"></i> 廣告一
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> 廣告二
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> 廣告三
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> 廣告四
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> 廣告五
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> 廣告六
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> 廣告七
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> 廣告八
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Main Top -->
+
+<!-- Start Main Top -->
+<header th:fragment="main-header" class="main-header">
+    <!-- Start Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+        <div class="container">
+            <!-- Start Header Navigation -->
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
+                        aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <!--<a class="navbar-brand" href="index.html"><img src="images/logo1.png" class="logo" width="180" height="150" alt=""></a> -->
+            </div>
+            <!-- End Header Navigation -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+
+                    <li class="nav-item active"><a class="nav-link" th:href="@{/}">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/home}">菜單總覽</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/products}">菜單詳情</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/account}">個人資料</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/order}">訂單查詢</a></li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+
+            <!-- Start Atribute Navigation -->
+            <div class="attr-nav">
+                <ul>
+                    <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                    <li class="side-menu">
+                        <a th:href="@{/cart}">
+                            <i class="fa fa-shopping-bag"></i>
+                            <span class="badge" th:text = "${session.totalItems == null} ? '0' : ${session.totalItems}"></span>
+                            <p>我的購物車</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- End Atribute Navigation -->
+        </div>
+        <!-- Start Side Menu -->
+        <div class="side">
+            <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+            <li class="cart-box">
+                <ul class="cart-list">
+                    <li>
+                        <a href="#" class="photo"><img th:src="@{/images/Lobster 02 - Lobster rolls.jpg}"
+                                                       class="cart-thumb"
+                                                       alt=""/></a>
+                        <h6><a href="#">Lobster rolls </a></h6>
+                        <p>1 - <span class="price">$80.00</span></p>
+                    </li>
+                </ul>
+            </li>
+        </div>
+        <!-- End Side Menu -->
+    </nav>
+    <!-- End Navigation -->
+</header>
+<!-- End Main Top -->
+
+<!-- Start Top Search -->
+<div th:fragment="top-search" class="top-search">
+    <div class="container">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="Search">
+            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+        </div>
+    </div>
+</div>
+<!-- End Top Search -->
+
+<!-- Start Slider -->
+<div class="all-title-box" th:fragment="slider">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>菜單</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="home.html">首頁</a></li>
+                    <li class="breadcrumb-item active"> 菜單 </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Slider -->
+
+<!-- Start Feed  -->
+<div class="instagram-box" th:fragment="instagram-box">
+    <div class="main-instagram owl-carousel owl-theme">
+        <div class="item">
+            <div class="ins-inner-box">
+                <a href="index.html"><img th:src="@{/images/Fish 01 - Fish Tacos.jpg}" alt=""/></a>
+
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img th:src="@{/images/instagram-img-02.jpg}" alt=""/>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <a href="index.html"><img th:src="@{/images/Fish 04 - Red Pepper & Parmesan Tilapia.jpg}" alt=""/></a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <a href="index.html"><img th:src="@{/images/Fish 05 - Almond-Topped Fish.jpg}" alt=""/></a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <a href="index.html"><img th:src="@{/images/Shrimp 03 - Shrimp Tostadas with Avocado Salsa.jpg}"
+                                          alt=""/></a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <a href="index.html"><img th:src="@{/images/Shrimp 08 - Grilled Shrimp and Chorizo Appetizers.jpg}"
+                                          alt=""/></a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <a href="index.html"><img
+                        th:src="@{/images/Octopus 06 - Red Wine–Braised Baby Octopus with Black Olives.jpg}"
+                        alt=""/></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Feed  -->
+
+<!-- Footer -->
+<footer th:fragment="footer" class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span> Spring Boot、Thyme-leaf、SpringSecurity、Spring Data JPA、Lombok、MySQL、Hibernate 練習</span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+
+<!-- Scroll to Top Button-->
+<a th:fragment="scroll" class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div th:fragment="logoutModal" class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Start Script -->
+<div th:fragment="script">
+    <!-- ALL JS FILES -->
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <!-- ALL PLUGINS -->
+    <script th:src="@{/js/jquery.superslides.min.js}"></script>
+    <script th:src="@{/js/bootstrap-select.js}"></script>
+    <script th:src="@{/js/inewsticker.js}"></script>
+<!--    <script th:src="@{/js/bootsnav.js}"></script>-->
+    <script th:src="@{/js/images-loded.min.js}"></script>
+    <script th:src="@{/js/isotope.min.js}"></script>
+    <script th:src="@{/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/js/baguetteBox.min.js}"></script>
+    <script th:src="@{/js/form-validator.min.js}"></script>
+    <script th:src="@{/js/contact-form-script.js}"></script>
+    <script th:src="@{/js/custom.js}"></script>
+</div>
+
+<!-- End Script -->
+</body>
+</html>

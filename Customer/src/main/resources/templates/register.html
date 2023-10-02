@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<!-- Basic -->
+
+<head th:replace="fragments::head"></head>
+
+<body>
+<!-- Start Main Top -->
+<div th:replace="fragments::main-top"></div>
+<!-- End Main Top -->
+
+<!-- Start Main Top -->
+<header th:replace="fragments::main-header"></header>
+<!-- End Main Top -->
+
+<!-- Start Top Search -->
+<div th:replace="fragments::top-search"></div>
+<!-- End Top Search -->
+
+
+<section id="register-form">
+    <div class="noi-dung">
+        <div class="form">
+            <h2>會員註冊</h2>
+
+            <div th:if="${error}" class="text-center alert alert-danger">
+                <p th:text="${error}"></p>
+            </div>
+            <div th:if="${username}" class="text-center alert-warning">
+                <p th:text="${username}"></p>
+            </div>
+            <div th:if="${password}" class="text-center alert-warning">
+                <p th:text="${password}"></p>
+            </div>
+            <div th:if="${success}" class="text-center alert-success">
+                <p th:text="${success}"></p>
+            </div>
+
+            <form th:action="@{/do-register}" method="POST" th:object="${customerDto}">
+                <div class="input-form">
+                    <input type="text" th:field="*{firstName}" placeholder="請輸入使用者姓氏..." name="">
+                </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('firstName')}"
+                     th:errors="*{firstName}">
+                </div>
+                <div class="input-form">
+                    <input type="text" th:field="*{lastName}" placeholder="請輸入使用者名字..." name="">
+                </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}"
+                     th:errors = "*{lastName}">
+                </div>
+                <div class="input-form">
+                    <input type="text" th:field="*{username}" placeholder="請輸入使用者名稱..." name="">
+                </div>
+                <div class="input-form">
+                    <input type="password" th:field="*{password}" placeholder="請輸入使用者密碼..." name="">
+                </div>
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('password')}"
+                     th:errors = "*{password}">
+                </div>
+                <div class="input-form">
+                    <input type="password" th:field="*{repeatPassword}" placeholder="請再次輸入使用者密碼..." name="">
+                </div>
+                <div class="input-form">
+                    <p>已經有帳號 <a th:href="@{/login}"> 會員登入 </a></p>
+                </div>
+                <div class="input-form">
+                    <input type="submit" value="Sign up">
+                </div>
+            </form>
+            <h3>Log In With Social Network</h3>
+            <ul class="icon-dang-nhap">
+                <li><i class="fab fa-facebook-f"></i></i></li>
+                <li><i class="fab fa-google"></i></li>
+                <li><i class="fab fa-weibo"></i></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ALL JS FILES -->
+<div th:replace="fragments::script"></div>
+</body>
+
+</html>
